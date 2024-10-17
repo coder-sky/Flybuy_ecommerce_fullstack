@@ -73,7 +73,7 @@ const LoginForm = () =>{
       if (OTP===authOtp.otp){
         //console.log('success')
         //navigate('/',{ replace: true })
-        axios.post('https://flybuy-ecommerce-backend.onrender.com/verifyotp',authOtp.data) //{username:'akash',password:12233,mobile:12113123})
+        axios.post('https://flybuy-ecommerce-backend.onrender.com/verifyotp',authOtp.data)
     .then(res=>{
       //console.log(res.data.jwt_token)
      onLoginSuccess(res.data.jwt_token,user)
@@ -102,11 +102,9 @@ const LoginForm = () =>{
     .then(res=>{
         updateProductCount(res.data.length)
     },[])
-    .catch(err=>//console.log('login'))
-    //console.log(username,password)
-    navigate('/',{ replace: true }) //it won't go back
-    //navigate('/')
-    )
+    .catch(err=>{
+    })
+    navigate('/',{ replace: true })
   }
   
   const showSubmitFailure = (msg) => {
@@ -114,34 +112,7 @@ const LoginForm = () =>{
     setSignInError({error:true,errorMsg:msg})
 
   }
- /*
-  const onChangePassword = event => {
-    setPassword((password)=>password=event.target.value)
-  }
-  
-  
-  const onSubmitForm = async event =>{
-    event.preventDefault()
-    const userDetails = {username,password}
-    //console.log(username,password)
-    const url  = 'https://apis.ccbp.in/login'
-    const options = {
-      method : 'POST',
-      body : JSON.stringify(userDetails)
-    }
-    //console.log(options.body)
-    const response = await fetch(url,options)
-    const data = await response.json()
-    //console.log(data)
-    //console.log(response)
-    if (response.ok){
-        onLoginSuccess(data.jwt_token)
-    }
-    else{
-        showSubmitFailure(data.error_msg)
-    }
-  }
-  */
+ 
 
   const changeToSignUP = () =>{
     //console.log('clicked')
@@ -157,7 +128,7 @@ const LoginForm = () =>{
   const onSignIn = (e) =>{
     //console.log(username,password,mobile)
     e.preventDefault()
-    axios.post('https://flybuy-ecommerce-backend.onrender.com/login',signInData) //{username:'akash',password:12233,mobile:12113123})
+    axios.post('https://flybuy-ecommerce-backend.onrender.com/login',signInData)
     .then(res=>{
       //console.log(res.data)
      onLoginSuccess(res.data.jwt,res.data.userId)
@@ -172,7 +143,7 @@ const LoginForm = () =>{
     e.preventDefault()
     //console.log(signUpData)
     if (signUpData.password === signUpData.conpass){
-    axios.post('https://flybuy-ecommerce-backend.onrender.com/data',signUpData) //{username:'akash',password:12233,mobile:12113123})
+    axios.post('https://flybuy-ecommerce-backend.onrender.com/data',signUpData)
     .then(res=>{
       //console.log(typeof(res.data))
       if (typeof(res.data)== "string"){
@@ -206,7 +177,7 @@ const LoginForm = () =>{
     e.preventDefault()
     //console.log(showotp.mobile.length)
     if(showotp.mobile!=='' && showotp.mobile.length === 12){
-    axios.post('https://flybuy-ecommerce-backend.onrender.com/getotp',{'mobile':showotp.mobile}) //{username:'akash',password:12233,mobile:12113123})
+    axios.post('https://flybuy-ecommerce-backend.onrender.com/getotp',{'mobile':showotp.mobile})
     .then(res=>{
       //console.log(res.data.data)
       setShowOtp({show:true,mobile:'',error:''})

@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 var orderIntance = require('./orderIntance.js');
 
 const textflow = require("textflow.js");
-textflow.useKey("7vmnl9zK6xxtoPmTyPApPXIclxTgwINYqlsM8wqHxLgcRqKIRWnIK4FW21w3CFCf");
+textflow.useKey( process.env.TEXTFLOW_KEY);
 
 
 
@@ -34,6 +34,12 @@ db.connect((err)=>{
         console.log('connected')
     }
 })
+
+function keepAlive() { 
+    console.log('re-connecting')
+    db.ping();     
+}
+setInterval(keepAlive, 43200000); 
 
 const createToken = (body) =>{
     return jwt.sign(body, 'pass')
