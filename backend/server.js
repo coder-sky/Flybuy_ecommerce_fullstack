@@ -39,7 +39,7 @@ function keepAlive() {
     console.log('re-connecting')
     db.ping();     
 }
-setInterval(keepAlive, 43200000); 
+setInterval(keepAlive, 14400000); 
 
 const createToken = (body) =>{
     return jwt.sign(body, 'pass')
