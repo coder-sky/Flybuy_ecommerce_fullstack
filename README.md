@@ -1,1 +1,1 @@
-Live link: https://flybuy-ecart.netlify.app/
+Live link: https://coder-sky-flybuy.vercel.app/
